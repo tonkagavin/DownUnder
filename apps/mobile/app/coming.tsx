@@ -9,8 +9,8 @@ export default function Coming() {
         <Muted>Missed-dose reminders (US SPR)</Muted>
         <Muted>Pharmacist quick-check without a patient record</Muted>
         <Muted>Browsable rules tables and change log</Muted>
-        <Muted>Live campus analytics (this demo uses synthetic numbers)</Muted>
-        <Muted>Passkeys instead of the demo role switcher</Muted>
+        <Muted>Live campus analytics</Muted>
+        <Muted>Passkeys instead of a guest session</Muted>
         <Muted>Spanish</Muted>
         <Muted>Partner API</Muted>
       </Card>

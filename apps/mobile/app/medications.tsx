@@ -7,7 +7,7 @@ import { useSession } from '../src/session';
 import { Body, Card, Muted, PrimaryButton, Screen, SecondaryButton, Title } from '../src/ui';
 
 export default function Medications() {
-  const { api, profile, refreshProfile, path } = useSession();
+  const { api, profile, refreshProfile } = useSession();
   const router = useRouter();
   const [picked, setPicked] = useState<PickedMedication | null>(null);
   const [busy, setBusy] = useState(false);
@@ -51,8 +51,8 @@ export default function Medications() {
           </View>
         ))}
       </Card>
-      <PrimaryButton label="Go to home" onPress={() => router.replace(path('/home'))} />
-      <SecondaryButton label="I’ll add it later" onPress={() => router.replace(path('/home'))} />
+      <PrimaryButton label="Go to home" onPress={() => router.replace('/home')} />
+      <SecondaryButton label="I’ll add it later" onPress={() => router.replace('/home')} />
     </Screen>
   );
 }

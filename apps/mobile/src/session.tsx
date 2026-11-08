@@ -1,17 +1,8 @@
 import { createApiClient, type ApiClient } from '@downunder/api-client';
 import type { CheckResult, ConsentState, MethodCard, Profile } from '@downunder/types';
-import { usePathname } from 'expo-router';
 import React, { createContext, useCallback, useContext, useEffect, useMemo, useState } from 'react';
 
-export type Role = 'patient' | 'clinician' | 'admin';
-export type Surface = 'product' | 'demo';
-
 type Session = {
-  surface: Surface;
-  basePath: string;
-  path: (suffix: string) => string;
-  role: Role;
-  setRole: (role: Role) => void;
   api: ApiClient;
   profile: Profile | null;
   setProfile: (profile: Profile | null) => void;
@@ -47,18 +38,12 @@ const getProductUserId = (): string => {
 };
 
 export const SessionProvider = ({ children }: { children: React.ReactNode }) => {
-  const pathname = usePathname();
-  const surface: Surface = pathname.startsWith('/demo') ? 'demo' : 'product';
-  const basePath = surface === 'demo' ? '/demo' : '';
-  const [role, setRole] = useState<Role>('patient');
   const [profile, setProfile] = useState<Profile | null>(null);
   const [lastCheck, setLastCheck] = useState<CheckResult | null>(null);
   const [methods, setMethods] = useState<MethodCard[]>([]);
   const [consents, setConsents] = useState<ConsentState | null>(null);
-  const userId = surface === 'demo' ? 'demo-maya' : getProductUserId();
-  const api = useMemo(() => createApiClient({ baseUrl: apiUrl, role, userId }), [role, userId]);
-
-  const path = useCallback((suffix: string) => `${basePath}${suffix.startsWith('/') ? suffix : `/${suffix}`}`, [basePath]);
+  const userId = getProductUserId();
+  const api = useMemo(() => createApiClient({ baseUrl: apiUrl, role: 'patient', userId }), [userId]);
 
   const refreshProfile = useCallback(async () => {
     const data = await api.profile();
@@ -71,26 +56,14 @@ export const SessionProvider = ({ children }: { children: React.ReactNode }) => 
   }, [api]);
 
   useEffect(() => {
-    setProfile(null);
-    setLastCheck(null);
-    setConsents(null);
     refreshProfile().catch(() => undefined);
     refreshConsent().catch(() => undefined);
     api.methods().then((data) => setMethods(data.methods)).catch(() => setMethods([]));
   }, [api, refreshConsent, refreshProfile]);
 
-  useEffect(() => {
-    if (surface === 'product') setRole('patient');
-  }, [surface]);
-
   return (
     <SessionContext.Provider
       value={{
-        surface,
-        basePath,
-        path,
-        role,
-        setRole,
         api,
         profile,
         setProfile,

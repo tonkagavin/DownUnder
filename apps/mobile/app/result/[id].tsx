@@ -8,7 +8,7 @@ import { Body, Card, Disclaimer, Muted, OutcomeChip, PrimaryButton, Screen, Seco
 
 export default function Result() {
   const { id } = useLocalSearchParams<{ id: string }>();
-  const { api, lastCheck, setLastCheck, path } = useSession();
+  const { api, lastCheck, setLastCheck } = useSession();
   const router = useRouter();
   const [check, setCheck] = useState<CheckResult | null>(lastCheck?.id === id ? lastCheck : null);
   const [openWhy, setOpenWhy] = useState(false);
@@ -110,12 +110,12 @@ export default function Result() {
         </Card>
       ) : null}
 
-      <PrimaryButton label="Ask a pharmacist" onPress={() => router.push(path('/help'))} />
+      <PrimaryButton label="Ask a pharmacist" onPress={() => router.push('/help')} />
       <SecondaryButton
         label="Ask DownUnder about this"
-        onPress={() => router.push({ pathname: path('/ask'), params: { checkId: check.id } })}
+        onPress={() => router.push({ pathname: '/ask', params: { checkId: check.id } })}
       />
-      <SecondaryButton label="Check another medication" onPress={() => router.replace(path('/check'))} />
+      <SecondaryButton label="Check another medication" onPress={() => router.replace('/check')} />
       <Disclaimer />
     </Screen>
   );

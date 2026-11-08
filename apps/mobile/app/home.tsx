@@ -7,7 +7,7 @@ import { Body, BrandMark, Card, Disclaimer, MethodGlyph, MoreLinks, Muted, Outco
 import type { CheckResult } from '@downunder/types';
 
 export default function Home() {
-  const { api, profile, refreshProfile, path } = useSession();
+  const { api, profile, refreshProfile } = useSession();
   const methodLabel = useMethodLabel();
   const router = useRouter();
   const [recent, setRecent] = useState<CheckResult[]>([]);
@@ -25,7 +25,7 @@ export default function Home() {
     setBusy(true);
     try {
       const { check } = await api.createCheck({ checkWholeList: true });
-      router.push(path(`/result/${check.id}`));
+      router.push(`/result/${check.id}`);
     } finally {
       setBusy(false);
     }
@@ -39,7 +39,7 @@ export default function Home() {
       <Title>{profile?.displayName ? `Hi, ${profile.displayName}.` : 'Your checks'}</Title>
       <Body>Your method and list stay here. Check a new medicine against both in under a minute.</Body>
 
-      <Pressable onPress={() => router.push(path('/profile'))} accessibilityRole="button" accessibilityLabel="Open profile">
+      <Pressable onPress={() => router.push('/profile')} accessibilityRole="button" accessibilityLabel="Open profile">
         <Card>
           <View style={{ flexDirection: 'row', gap: 12, alignItems: 'center' }}>
             <MethodGlyph code={profile?.methodCode ?? 'notSure'} size={48} />
@@ -57,7 +57,7 @@ export default function Home() {
         </Card>
       </Pressable>
 
-      <PrimaryButton label="Check a medication" onPress={() => router.push(path('/check'))} />
+      <PrimaryButton label="Check a medication" onPress={() => router.push('/check')} />
       <SecondaryButton label={busy ? 'Checking your list…' : 'Check my whole list'} onPress={checkWholeList} disabled={busy} />
 
       <SectionLabel>Recent checks</SectionLabel>
@@ -67,7 +67,7 @@ export default function Home() {
         recent.map((check) => {
           const subject = check.findings[0]?.subjectName ?? 'Check';
           return (
-            <Pressable key={check.id} onPress={() => router.push(path(`/result/${check.id}`))} accessibilityRole="button">
+            <Pressable key={check.id} onPress={() => router.push(`/result/${check.id}`)} accessibilityRole="button">
               <Card>
                 <OutcomeChip outcome={check.overall} />
                 <Text style={{ color: tokens.color.ink, fontWeight: '700' }}>{subject}</Text>
@@ -79,7 +79,7 @@ export default function Home() {
       )}
       <MoreLinks />
       <Disclaimer />
-      <Pressable onPress={() => router.push(path('/coming'))}>
+      <Pressable onPress={() => router.push('/coming')}>
         <Muted>Coming: missed-dose reminders</Muted>
       </Pressable>
     </Screen>

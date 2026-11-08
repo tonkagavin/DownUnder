@@ -7,7 +7,7 @@ import { useMethodLabel, useSession } from '../src/session';
 import { Body, Card, Disclaimer, MethodGlyph, Muted, PrimaryButton, ProgressTrack, Screen, SecondaryButton, Title } from '../src/ui';
 
 export default function Check() {
-  const { api, profile, setLastCheck, path } = useSession();
+  const { api, profile, setLastCheck } = useSession();
   const methodLabel = useMethodLabel();
   const router = useRouter();
   const [picked, setPicked] = useState<PickedMedication | null>(null);
@@ -27,7 +27,7 @@ export default function Check() {
         searchedMedication: { displayName: picked.displayName, rxcui: picked.rxcui }
       });
       setLastCheck(check);
-      router.push(path(`/result/${check.id}`));
+      router.push(`/result/${check.id}`);
     } catch (err) {
       setError(
         err instanceof Error
@@ -67,7 +67,7 @@ export default function Check() {
         onPress={run}
         disabled={!picked || !!step}
       />
-      <SecondaryButton label="Edit method and list" onPress={() => router.push(path('/profile'))} />
+      <SecondaryButton label="Edit method and list" onPress={() => router.push('/profile')} />
       <Disclaimer />
     </Screen>
   );

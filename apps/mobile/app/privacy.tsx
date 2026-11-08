@@ -7,7 +7,7 @@ import { useSession } from '../src/session';
 import { Body, Card, Muted, PrimaryButton, Screen, SecondaryButton, SectionLabel, Title } from '../src/ui';
 
 export default function Privacy() {
-  const { api, profile, methods, consents, refreshConsent, refreshProfile, path } = useSession();
+  const { api, profile, methods, consents, refreshConsent, refreshProfile } = useSession();
   const router = useRouter();
   const [log, setLog] = useState<AccessLogEntry[]>([]);
   const [exported, setExported] = useState<PrivacyExport | null>(null);
@@ -93,7 +93,7 @@ export default function Privacy() {
       {exported ? <Muted>Exported {exported.checks.length} check(s) as JSON.</Muted> : null}
       {confirmDelete ? (
         <Card>
-          <Body>This deletes your method, medications, health facts, and check results from this demo. Audit records required by law stay, without your medication names.</Body>
+          <Body>This deletes your method, medications, health facts, and check results from this app. Audit records required by law stay, without your medication names.</Body>
           <PrimaryButton label="Delete my data" onPress={deleteAll} />
           <SecondaryButton label="Keep my data" onPress={() => setConfirmDelete(false)} />
         </Card>
@@ -101,7 +101,7 @@ export default function Privacy() {
         <SecondaryButton label="Delete everything" onPress={() => setConfirmDelete(true)} />
       )}
       {message ? <Muted>{message}</Muted> : null}
-      <Pressable onPress={() => router.push(path('/how'))}>
+      <Pressable onPress={() => router.push('/how')}>
         <Text style={{ color: tokens.color.accent, fontWeight: '700' }}>How DownUnder decides</Text>
       </Pressable>
     </Screen>

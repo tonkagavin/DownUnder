@@ -2,6 +2,8 @@
 
 Medication-safety check for birth control. A student records her method and other medications; DownUnder says whether anything in that combination matters, cites the source, and asks a pharmacist when it cannot tell. It never says “safe”. This is information from published labels and guidelines, not medical advice.
 
+This branch is the student product. The campus demo (Maya, clinician, admin) lives on `campus-demo`.
+
 The previous `frontend/` and `backend/` Express + sql.js MVP is retired. Use `apps/` and `packages/`.
 
 ## Stack
@@ -20,9 +22,8 @@ npm run dev
 
 - API: http://localhost:4000
 - Student product: http://localhost:8081
-- Campus demo (Maya, clinician, admin): http://localhost:8081/demo
 
-The student product is a separate profile. It has no role switcher. The campus demo keeps Maya (combined pill, sertraline) plus Dr. Reyes’s worklist and the admin dashboard. Search **rifampin** (known interaction), **lamotrigine** (reverse effect), **amoxicillin** (pick the product), **mystery herb** (not enough information).
+Search **rifampin** (known interaction), **lamotrigine** (reverse effect), **amoxicillin** (pick the product), **mystery herb** (not enough information).
 
 ## Test
 
