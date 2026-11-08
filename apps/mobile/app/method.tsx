@@ -6,7 +6,7 @@ import { useSession } from '../src/session';
 import { Body, PrimaryButton, Screen, Title } from '../src/ui';
 
 export default function Method() {
-  const { api, methods, profile, refreshProfile, path } = useSession();
+  const { api, methods, profile, refreshProfile } = useSession();
   const router = useRouter();
   const [selected, setSelected] = useState<MethodCategory | null>(profile?.methodCode ?? null);
   const [busy, setBusy] = useState(false);
@@ -23,7 +23,7 @@ export default function Method() {
     } catch {
       // continue so onboarding is not blocked if the demo API is slow
     }
-    router.push(path('/medications'));
+    router.push('/medications');
   };
 
   return (

@@ -7,7 +7,7 @@ import { Body, Card, Muted, PrimaryButton, Screen, Title } from '../src/ui';
 
 export default function Consent() {
   const router = useRouter();
-  const { api, refreshConsent, path } = useSession();
+  const { api, refreshConsent } = useSession();
   const [mode, setMode] = useState<'guest' | 'saved'>('guest');
   const [analytics, setAnalytics] = useState(false);
   const [clinicShare, setClinicShare] = useState(false);
@@ -21,7 +21,7 @@ export default function Consent() {
     } catch {
       // still continue so a slow demo API cannot trap onboarding
     }
-    router.push(path('/method'));
+    router.push('/method');
   };
 
   return (

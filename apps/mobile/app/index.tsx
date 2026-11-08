@@ -2,28 +2,48 @@ import { disclaimers } from '@downunder/ui';
 import { useRouter } from 'expo-router';
 import { View } from 'react-native';
 import { useSession } from '../src/session';
-import { Body, BrandMark, Card, Disclaimer, Eyebrow, Muted, PrimaryButton, Screen, Title } from '../src/ui';
+import { Body, BrandMark, Card, Disclaimer, Eyebrow, Muted, PrimaryButton, Screen, SecondaryButton, Title } from '../src/ui';
 
-export default function Welcome() {
+export default function DemoHub() {
   const router = useRouter();
-  const { profile } = useSession();
+  const { setRole } = useSession();
   return (
     <Screen>
       <BrandMark />
-      <Eyebrow>For students on birth control</Eyebrow>
-      <Title>Check a medicine against your birth control.</Title>
-      <Body>DownUnder tells you whether they affect each other, cites the source, and asks a pharmacist when it cannot tell.</Body>
+      <Eyebrow>Campus health center walkthrough</Eyebrow>
+      <Title>Show Maya, Dr. Reyes, and the campus dashboard.</Title>
+      <Body>
+        This is the campus demo: a seeded student, a clinician worklist, and de-identified admin counts. Use the switcher
+        at the top to move between roles.
+      </Body>
       <Card>
-        <Body>It does not check every drug against every drug.</Body>
-        <Body>It does not replace a pharmacist or clinician.</Body>
-        <Body>It never says “safe”.</Body>
+        <Body>Patient: Maya, 20, combined pill, sertraline.</Body>
+        <Body>Clinician: Dr. Reyes’s worklist of Maya’s checks. Students never see this.</Body>
+        <Body>Admin: de-identified counts. What a campus would buy.</Body>
       </Card>
-      {profile?.methodCode ? (
-        <PrimaryButton label="Go to home" onPress={() => router.replace('/home')} />
-      ) : (
-        <PrimaryButton label="Continue" onPress={() => router.push('/consent')} />
-      )}
+      <PrimaryButton
+        label="Open Maya’s patient app"
+        onPress={() => {
+          setRole('patient');
+          router.replace('/home');
+        }}
+      />
+      <SecondaryButton
+        label="Clinician worklist"
+        onPress={() => {
+          setRole('clinician');
+          router.push('/clinic');
+        }}
+      />
+      <SecondaryButton
+        label="Campus admin"
+        onPress={() => {
+          setRole('admin');
+          router.push('/admin');
+        }}
+      />
       <View style={{ gap: 6 }}>
+        <Muted>Try rifampin (known interaction), amoxicillin (pick the product), mystery herb (not enough information).</Muted>
         <Disclaimer />
         <Muted>{disclaimers.neverSafe}</Muted>
       </View>

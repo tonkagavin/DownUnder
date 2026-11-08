@@ -215,13 +215,13 @@ const TabGlyph = ({ name, color }: { name: 'home' | 'check' | 'profile' | 'ask';
 export const TabBar = () => {
   const pathname = usePathname();
   const router = useRouter();
-  const { role, path } = useSession();
+  const { role } = useSession();
   if (role !== 'patient') return null;
   const tabs = [
-    { href: path('/home'), label: 'Home', icon: 'home' as const },
-    { href: path('/check'), label: 'Check', icon: 'check' as const },
-    { href: path('/profile'), label: 'Profile', icon: 'profile' as const },
-    { href: path('/ask'), label: 'Ask', icon: 'ask' as const }
+    { href: '/home', label: 'Home', icon: 'home' as const },
+    { href: '/check', label: 'Check', icon: 'check' as const },
+    { href: '/profile', label: 'Profile', icon: 'profile' as const },
+    { href: '/ask', label: 'Ask', icon: 'ask' as const }
   ];
   return (
     <View style={styles.tabBar} accessibilityRole="tablist">
@@ -248,12 +248,11 @@ export const TabBar = () => {
 
 export const MoreLinks = () => {
   const router = useRouter();
-  const { path } = useSession();
   return (
     <View style={styles.more}>
-      <TextButton label="Privacy center" onPress={() => router.push(path('/privacy'))} />
-      <TextButton label="How DownUnder decides" onPress={() => router.push(path('/how'))} />
-      <TextButton label="Find a pharmacist" onPress={() => router.push(path('/help'))} />
+      <TextButton label="Privacy center" onPress={() => router.push('/privacy')} />
+      <TextButton label="How DownUnder decides" onPress={() => router.push('/how')} />
+      <TextButton label="Find a pharmacist" onPress={() => router.push('/help')} />
     </View>
   );
 };
