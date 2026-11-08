@@ -1,0 +1,46 @@
+version: "2026.11"
+effectiveDate: "2026-11-07"
+source: "CDC US MEC 2024"
+reviewedBy: pending
+reviewDue: "2027-02-01"
+mecConditions:
+  - id: mec.smoking.age35.chc
+    condition: smokingAge35Plus
+    methodCategories: [chcPill, chcPatch, chcRing]
+    mecCategory: 4
+    direction: methodContraindicatedByCondition
+    severity: knownInteraction
+    why: "Combined hormonal methods are a poor fit if you smoke and are 35 or older (CDC US MEC)."
+    whatToDo: "Ask a clinician or pharmacist about methods that do not contain estrogen, such as an IUD, the shot, the implant, or a progestin-only pill."
+    evidence:
+      - { type: guideline, source: CDC_US_MEC_2024, section: "Smoking" }
+  - id: mec.migraineAura.chc
+    condition: migraineWithAura
+    methodCategories: [chcPill, chcPatch, chcRing]
+    mecCategory: 4
+    direction: methodContraindicatedByCondition
+    severity: knownInteraction
+    why: "Combined hormonal methods are a poor fit if you have migraine with aura (CDC US MEC)."
+    whatToDo: "Ask a clinician or pharmacist about methods that do not contain estrogen."
+    evidence:
+      - { type: guideline, source: CDC_US_MEC_2024, section: "Migraine" }
+  - id: mec.hypertension.chc
+    condition: hypertension
+    methodCategories: [chcPill, chcPatch, chcRing]
+    mecCategory: 3
+    direction: methodContraindicatedByCondition
+    severity: possibleInteraction
+    why: "Combined hormonal methods may be a poor fit if you have high blood pressure (CDC US MEC)."
+    whatToDo: "Check with a clinician or pharmacist before relying on an estrogen-containing method."
+    evidence:
+      - { type: guideline, source: CDC_US_MEC_2024, section: "Hypertension" }
+  - id: mec.vte.chc
+    condition: vteHistory
+    methodCategories: [chcPill, chcPatch, chcRing]
+    mecCategory: 4
+    direction: methodContraindicatedByCondition
+    severity: knownInteraction
+    why: "Combined hormonal methods are a poor fit if you have had a blood clot (CDC US MEC)."
+    whatToDo: "Ask a clinician or pharmacist about methods that do not contain estrogen."
+    evidence:
+      - { type: guideline, source: CDC_US_MEC_2024, section: "VTE" }

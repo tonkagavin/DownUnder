@@ -1,0 +1,127 @@
+version: "2026.11"
+effectiveDate: "2026-11-07"
+source: "US MEC 2024, US SPR 2024, FSRH"
+reviewedBy: pending
+reviewDue: "2027-02-01"
+methods:
+  - code: chcPill
+    name: Combined oral contraceptive pill
+    plainName: Combined pill
+    route: oral
+    hormones: [ethinylEstradiol, progestin]
+    susceptibility:
+      hepaticInduction: true
+      giAbsorption: true
+      potassium: false
+    reliabilityClass: moderate
+    note: Some enzyme-inducing medicines can make the combined pill less effective.
+  - code: chcPatch
+    name: Combined hormonal patch
+    plainName: Patch
+    route: transdermal
+    hormones: [ethinylEstradiol, norelgestromin]
+    susceptibility:
+      hepaticInduction: true
+      giAbsorption: false
+      potassium: false
+    reliabilityClass: moderate
+    note: Enzyme inducers can make the patch less effective.
+  - code: chcRing
+    name: Combined vaginal ring
+    plainName: Ring
+    route: vaginal
+    hormones: [ethinylEstradiol, etonogestrel]
+    susceptibility:
+      hepaticInduction: true
+      giAbsorption: false
+      potassium: false
+    reliabilityClass: moderate
+    note: Enzyme inducers can make the ring less effective.
+  - code: pop
+    name: Progestin-only pill
+    plainName: Mini-pill
+    route: oral
+    hormones: [progestin]
+    susceptibility:
+      hepaticInduction: true
+      giAbsorption: true
+      potassium: false
+    reliabilityClass: moderate
+    note: Enzyme inducers can make the mini-pill less effective.
+  - code: otcNorgestrel
+    name: Over-the-counter norgestrel pill (Opill)
+    plainName: Opill
+    route: oral
+    hormones: [norgestrel]
+    susceptibility:
+      hepaticInduction: true
+      giAbsorption: true
+      potassium: false
+    reliabilityClass: moderate
+    note: This is a progestin-only pill you can buy without a prescription. Enzyme inducers can make it less effective.
+  - code: implant
+    name: Contraceptive implant
+    plainName: Implant
+    route: subdermal
+    hormones: [etonogestrel]
+    susceptibility:
+      hepaticInduction: true
+      giAbsorption: false
+      potassium: false
+    reliabilityClass: high
+    note: Some enzyme inducers can lower implant hormone levels.
+  - code: dmpa
+    name: Depot medroxyprogesterone acetate injection
+    plainName: The shot
+    route: injection
+    hormones: [medroxyprogesterone]
+    susceptibility:
+      hepaticInduction: false
+      giAbsorption: false
+      potassium: false
+    reliabilityClass: high
+    note: The shot is not known to be weakened by enzyme-inducing medicines.
+  - code: lngIud
+    name: Levonorgestrel intrauterine device
+    plainName: Hormonal IUD
+    route: intrauterine
+    hormones: [levonorgestrel]
+    susceptibility:
+      hepaticInduction: false
+      giAbsorption: false
+      potassium: false
+    reliabilityClass: high
+    note: IUDs are not affected by most medications.
+  - code: copperIud
+    name: Copper intrauterine device
+    plainName: Copper IUD
+    route: intrauterine
+    hormones: []
+    susceptibility:
+      hepaticInduction: false
+      giAbsorption: false
+      potassium: false
+    reliabilityClass: high
+    note: The copper IUD has no hormones, so enzyme inducers do not affect it.
+  - code: none
+    name: No method right now
+    plainName: None
+    route: none
+    hormones: []
+    susceptibility:
+      hepaticInduction: false
+      giAbsorption: false
+      potassium: false
+    reliabilityClass: none
+    note: Some medicines recommend reliable contraception while you take them.
+  - code: notSure
+    name: I am not sure
+    plainName: Not sure
+    route: unknown
+    hormones: []
+    susceptibility:
+      hepaticInduction: false
+      giAbsorption: false
+      potassium: false
+    reliabilityClass: unknown
+    note: You can still check a medicine. A pharmacist can help you name your method.

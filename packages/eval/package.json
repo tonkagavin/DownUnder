@@ -1,0 +1,19 @@
+{
+  "name": "@downunder/eval",
+  "version": "2.0.0",
+  "private": true,
+  "type": "module",
+  "main": "./src/index.ts",
+  "scripts": {
+    "eval": "tsx src/run.ts",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@downunder/rules": "*",
+    "@downunder/types": "*"
+  },
+  "devDependencies": {
+    "tsx": "^4.21.0",
+    "vitest": "^4.1.5"
+  }
+}

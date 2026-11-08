@@ -1,0 +1,30 @@
+{
+  "name": "@downunder/api",
+  "version": "2.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "tsx watch src/server.ts",
+    "start": "tsx src/server.ts",
+    "seed": "tsx src/db/seed.ts",
+    "test": "vitest run",
+    "build": "tsc -p tsconfig.json --noEmit"
+  },
+  "dependencies": {
+    "@downunder/extract": "*",
+    "@downunder/rules": "*",
+    "@downunder/rules-data": "*",
+    "@downunder/types": "*",
+    "@electric-sql/pglite": "^0.3.14",
+    "@fastify/cors": "^11.1.0",
+    "drizzle-orm": "^0.44.7",
+    "fastify": "^5.6.1",
+    "zod": "^4.1.12"
+  },
+  "devDependencies": {
+    "@types/node": "^24.10.1",
+    "tsx": "^4.21.0",
+    "typescript": "^5.9.3",
+    "vitest": "^4.1.5"
+  }
+}

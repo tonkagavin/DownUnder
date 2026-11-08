@@ -1,0 +1,16 @@
+version: "2026.11"
+effectiveDate: "2026-11-07"
+source: "FSRH; US SPR; ulipristal labels"
+reviewedBy: pending
+reviewDue: "2027-02-01"
+ecInteractions:
+  - id: ec.ulipristal.thenHormonal
+    rxcui: "1007672"
+    name: ulipristal
+    direction: medMedInteractionContraceptionRelevant
+    mechanism: pharmacodynamic
+    severity: knownInteraction
+    why: "Starting a hormonal method too soon after ulipristal emergency contraception can make the emergency dose less effective."
+    whatToDo: "Guidance is to wait 5 days after ulipristal before starting a hormonal method, and to use a barrier method in between. Ask a pharmacist to time this."
+    evidence:
+      - { type: guideline, source: FSRH_EC, section: "Ulipristal and hormonal contraception" }

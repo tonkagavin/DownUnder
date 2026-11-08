@@ -1,1 +1,16 @@
 node_modules
+dist
+.expo
+.turbo
+*.log
+.DS_Store
+.env
+.env.local
+apps/api/data
+apps/mobile/.expo
+apps/mobile/dist
+coverage
+.pglite
+*.sqlite
+.vscode
+.idea

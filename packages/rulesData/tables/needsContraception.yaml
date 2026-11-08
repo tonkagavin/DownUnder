@@ -1,0 +1,66 @@
+version: "2026.11"
+effectiveDate: "2026-11-07"
+source: "FDA REMS (iPLEDGE); labels; ACOG/FSRH"
+reviewedBy: pending
+reviewDue: "2027-02-01"
+needsContraception:
+  - id: needs.isotretinoin
+    rxcui: "6064"
+    name: isotretinoin
+    reliabilityRequired: high
+    direction: medRequiresReliableContraception
+    mechanism: teratogenicRisk
+    severity: knownInteraction
+    why: "{drug} can cause severe birth defects. Programs such as iPLEDGE require reliable contraception while taking it."
+    whatToDo: "Ask a pharmacist or the prescriber which contraception the program requires. This tool does not replace iPLEDGE."
+    vulnerableMethods: [none, notSure]
+    evidence:
+      - { type: guideline, source: FDA_iPLEDGE, section: "REMS" }
+  - id: needs.mycophenolate
+    rxcui: "7145"
+    name: mycophenolate
+    reliabilityRequired: high
+    direction: medRequiresReliableContraception
+    mechanism: teratogenicRisk
+    severity: knownInteraction
+    why: "{drug} can cause birth defects and pregnancy loss. Reliable contraception is required during use."
+    whatToDo: "Ask a pharmacist or the prescriber about required contraception. Do not change this medicine on your own."
+    vulnerableMethods: [none, notSure]
+    evidence:
+      - { type: guideline, source: FDA_mycophenolate_REMS, section: "REMS" }
+  - id: needs.valproate
+    rxcui: "11118"
+    name: valproate
+    reliabilityRequired: high
+    direction: medRequiresReliableContraception
+    mechanism: teratogenicRisk
+    severity: knownInteraction
+    why: "{drug} can cause birth defects. Guidelines recommend effective contraception during use."
+    whatToDo: "Ask a pharmacist or the prescriber about contraception while taking {drug}."
+    vulnerableMethods: [none, notSure]
+    evidence:
+      - { type: guideline, source: FDA_valproate, section: useInSpecificPopulations }
+  - id: needs.methotrexate
+    rxcui: "6851"
+    name: methotrexate
+    reliabilityRequired: high
+    direction: medRequiresReliableContraception
+    mechanism: teratogenicRisk
+    severity: knownInteraction
+    why: "{drug} can harm a pregnancy. Reliable contraception is recommended during use."
+    whatToDo: "Ask a pharmacist or the prescriber about contraception while taking {drug}."
+    vulnerableMethods: [none, notSure]
+    evidence:
+      - { type: label, source: FDA_methotrexate, section: useInSpecificPopulations }
+  - id: needs.thalidomide
+    rxcui: "10432"
+    name: thalidomide
+    reliabilityRequired: high
+    direction: medRequiresReliableContraception
+    mechanism: teratogenicRisk
+    severity: knownInteraction
+    why: "{drug} can cause severe birth defects. A REMS program requires reliable contraception."
+    whatToDo: "Ask a pharmacist or the prescriber which contraception the program requires."
+    vulnerableMethods: [none, notSure]
+    evidence:
+      - { type: guideline, source: FDA_thalidomide_REMS, section: "REMS" }

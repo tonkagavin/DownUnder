@@ -1,0 +1,202 @@
+version: "2026.11"
+effectiveDate: "2026-11-07"
+source: "FSRH CEU Drug Interactions with Hormonal Contraception; US MEC 2024; FDA labels"
+reviewedBy: pending
+reviewDue: "2027-02-01"
+inducers:
+  - id: inducer.rifampin.chc
+    rxcui: "9384"
+    name: rifampin
+    strength: strong
+    objectMethodCategories: [chcPill, chcPatch, chcRing, pop, otcNorgestrel, implant]
+    notAffectedMethods: [lngIud, copperIud, dmpa]
+    direction: medReducesMethodEfficacy
+    mechanism: cyp3a4Induction
+    severity: knownInteraction
+    why: "{drug} can make your {method} less effective by speeding how the body clears hormones."
+    whatToDo: "Ask a pharmacist or clinician about a method not affected by enzyme inducers (IUD or the shot), or about adding a barrier method during use and for 28 days after stopping."
+    durationNote: "The effect can last 28 days after you stop {drug}."
+    alternativesNote: "IUDs and the shot are not affected by this kind of medicine."
+    evidence:
+      - { type: guideline, source: FSRH_CEU_DI_2022, section: "Table 2" }
+      - { type: guideline, source: CDC_US_MEC_2024, section: "CYP inducers" }
+  - id: inducer.rifabutin.chc
+    rxcui: "55672"
+    name: rifabutin
+    strength: moderate
+    objectMethodCategories: [chcPill, chcPatch, chcRing, pop, otcNorgestrel, implant]
+    notAffectedMethods: [lngIud, copperIud, dmpa]
+    direction: medReducesMethodEfficacy
+    mechanism: cyp3a4Induction
+    severity: knownInteraction
+    why: "{drug} can make your {method} less effective by speeding hormone clearance."
+    whatToDo: "Ask a pharmacist or clinician about a method not affected by enzyme inducers (IUD or the shot), or about adding a barrier method during use and for 28 days after stopping."
+    durationNote: "The effect can last 28 days after you stop {drug}."
+    alternativesNote: "IUDs and the shot are not affected by this kind of medicine."
+    evidence:
+      - { type: guideline, source: FSRH_CEU_DI_2022, section: "Table 2" }
+  - id: inducer.carbamazepine.chc
+    rxcui: "2002"
+    name: carbamazepine
+    strength: strong
+    objectMethodCategories: [chcPill, chcPatch, chcRing, pop, otcNorgestrel, implant]
+    notAffectedMethods: [lngIud, copperIud, dmpa]
+    direction: medReducesMethodEfficacy
+    mechanism: cyp3a4Induction
+    severity: knownInteraction
+    why: "{drug} can make your {method} less effective (enzyme induction)."
+    whatToDo: "Ask a pharmacist or clinician about a method not affected by enzyme inducers (IUD or the shot), or about adding a barrier method during use and for 28 days after stopping."
+    durationNote: "The effect can last 28 days after you stop {drug}."
+    alternativesNote: "IUDs and the shot are not affected by this kind of medicine."
+    evidence:
+      - { type: guideline, source: FSRH_CEU_DI_2022, section: "Table 2" }
+  - id: inducer.phenytoin.chc
+    rxcui: "8183"
+    name: phenytoin
+    strength: strong
+    objectMethodCategories: [chcPill, chcPatch, chcRing, pop, otcNorgestrel, implant]
+    notAffectedMethods: [lngIud, copperIud, dmpa]
+    direction: medReducesMethodEfficacy
+    mechanism: cyp3a4Induction
+    severity: knownInteraction
+    why: "{drug} can make your {method} less effective (enzyme induction)."
+    whatToDo: "Ask a pharmacist or clinician about a method not affected by enzyme inducers (IUD or the shot), or about adding a barrier method during use and for 28 days after stopping."
+    durationNote: "The effect can last 28 days after you stop {drug}."
+    alternativesNote: "IUDs and the shot are not affected by this kind of medicine."
+    evidence:
+      - { type: guideline, source: FSRH_CEU_DI_2022, section: "Table 2" }
+  - id: inducer.phenobarbital.chc
+    rxcui: "8134"
+    name: phenobarbital
+    strength: strong
+    objectMethodCategories: [chcPill, chcPatch, chcRing, pop, otcNorgestrel, implant]
+    notAffectedMethods: [lngIud, copperIud, dmpa]
+    direction: medReducesMethodEfficacy
+    mechanism: cyp3a4Induction
+    severity: knownInteraction
+    why: "{drug} can make your {method} less effective (enzyme induction)."
+    whatToDo: "Ask a pharmacist or clinician about a method not affected by enzyme inducers (IUD or the shot), or about adding a barrier method during use and for 28 days after stopping."
+    durationNote: "The effect can last 28 days after you stop {drug}."
+    alternativesNote: "IUDs and the shot are not affected by this kind of medicine."
+    evidence:
+      - { type: guideline, source: FSRH_CEU_DI_2022, section: "Table 2" }
+  - id: inducer.primidone.chc
+    rxcui: "8691"
+    name: primidone
+    strength: strong
+    objectMethodCategories: [chcPill, chcPatch, chcRing, pop, otcNorgestrel, implant]
+    notAffectedMethods: [lngIud, copperIud, dmpa]
+    direction: medReducesMethodEfficacy
+    mechanism: cyp3a4Induction
+    severity: knownInteraction
+    why: "{drug} can make your {method} less effective (enzyme induction)."
+    whatToDo: "Ask a pharmacist or clinician about a method not affected by enzyme inducers (IUD or the shot), or about adding a barrier method during use and for 28 days after stopping."
+    durationNote: "The effect can last 28 days after you stop {drug}."
+    alternativesNote: "IUDs and the shot are not affected by this kind of medicine."
+    evidence:
+      - { type: guideline, source: FSRH_CEU_DI_2022, section: "Table 2" }
+  - id: inducer.oxcarbazepine.chc
+    rxcui: "32624"
+    name: oxcarbazepine
+    strength: moderate
+    objectMethodCategories: [chcPill, chcPatch, chcRing, pop, otcNorgestrel, implant]
+    notAffectedMethods: [lngIud, copperIud, dmpa]
+    direction: medReducesMethodEfficacy
+    mechanism: cyp3a4Induction
+    severity: knownInteraction
+    why: "{drug} can make your {method} less effective (enzyme induction)."
+    whatToDo: "Ask a pharmacist or clinician about a method not affected by enzyme inducers (IUD or the shot), or about adding a barrier method during use and for 28 days after stopping."
+    durationNote: "The effect can last 28 days after you stop {drug}."
+    alternativesNote: "IUDs and the shot are not affected by this kind of medicine."
+    evidence:
+      - { type: guideline, source: FSRH_CEU_DI_2022, section: "Table 2" }
+  - id: inducer.topiramate.chc
+    rxcui: "38404"
+    name: topiramate
+    strength: moderate
+    objectMethodCategories: [chcPill, chcPatch, chcRing, pop, otcNorgestrel, implant]
+    notAffectedMethods: [lngIud, copperIud, dmpa]
+    direction: medReducesMethodEfficacy
+    mechanism: cyp3a4Induction
+    severity: knownInteraction
+    why: "{drug} (especially at higher doses) can make your {method} less effective."
+    whatToDo: "Ask a pharmacist or clinician about a method not affected by enzyme inducers (IUD or the shot), or about adding a barrier method."
+    durationNote: "Ask how long to use a backup method after you stop {drug}."
+    alternativesNote: "IUDs and the shot are not affected by this kind of medicine."
+    evidence:
+      - { type: guideline, source: FSRH_CEU_DI_2022, section: "Table 2" }
+  - id: inducer.efavirenz.chc
+    rxcui: "195085"
+    name: efavirenz
+    strength: moderate
+    objectMethodCategories: [chcPill, chcPatch, chcRing, pop, otcNorgestrel, implant]
+    notAffectedMethods: [lngIud, copperIud, dmpa]
+    direction: medReducesMethodEfficacy
+    mechanism: cyp3a4Induction
+    severity: knownInteraction
+    why: "{drug} can make your {method} less effective (enzyme induction)."
+    whatToDo: "Ask a pharmacist or clinician about a method not affected by enzyme inducers (IUD or the shot), or about adding a barrier method during use and for 28 days after stopping."
+    durationNote: "The effect can last 28 days after you stop {drug}."
+    alternativesNote: "IUDs and the shot are not affected by this kind of medicine."
+    evidence:
+      - { type: guideline, source: FSRH_CEU_DI_2022, section: "Table 2" }
+  - id: inducer.stJohnsWort.chc
+    rxcui: "285158"
+    name: St John's wort
+    strength: moderate
+    objectMethodCategories: [chcPill, chcPatch, chcRing, pop, otcNorgestrel, implant]
+    notAffectedMethods: [lngIud, copperIud, dmpa]
+    direction: medReducesMethodEfficacy
+    mechanism: cyp3a4Induction
+    severity: knownInteraction
+    why: "St John's wort can make your {method} less effective."
+    whatToDo: "Ask a pharmacist or clinician before using St John's wort with hormonal contraception. IUDs and the shot are not affected this way."
+    durationNote: "The effect can last 28 days after you stop St John's wort."
+    alternativesNote: "IUDs and the shot are not affected by this kind of product."
+    evidence:
+      - { type: guideline, source: FSRH_CEU_DI_2022, section: "Herbal products" }
+  - id: inducer.griseofulvin.chc
+    rxcui: "50852"
+    name: griseofulvin
+    strength: weak
+    objectMethodCategories: [chcPill, chcPatch, chcRing, pop, otcNorgestrel]
+    notAffectedMethods: [lngIud, copperIud, dmpa, implant]
+    direction: medReducesMethodEfficacy
+    mechanism: cyp3a4Induction
+    severity: possibleInteraction
+    why: "{drug} may make your {method} less effective."
+    whatToDo: "Check with a pharmacist before relying on your {method} alone while taking {drug}."
+    durationNote: null
+    alternativesNote: "IUDs and the shot are not affected by this kind of medicine."
+    evidence:
+      - { type: guideline, source: FSRH_CEU_DI_2022, section: "Antifungals" }
+  - id: inducer.bosentan.chc
+    rxcui: "203591"
+    name: bosentan
+    strength: moderate
+    objectMethodCategories: [chcPill, chcPatch, chcRing, pop, otcNorgestrel, implant]
+    notAffectedMethods: [lngIud, copperIud, dmpa]
+    direction: medReducesMethodEfficacy
+    mechanism: cyp3a4Induction
+    severity: knownInteraction
+    why: "{drug} can make your {method} less effective (enzyme induction)."
+    whatToDo: "Ask a pharmacist or clinician about a method not affected by enzyme inducers (IUD or the shot)."
+    durationNote: "The effect can last 28 days after you stop {drug}."
+    alternativesNote: "IUDs and the shot are not affected by this kind of medicine."
+    evidence:
+      - { type: guideline, source: FSRH_CEU_DI_2022, section: "Table 2" }
+  - id: inducer.modafinil.chc
+    rxcui: "30125"
+    name: modafinil
+    strength: weak
+    objectMethodCategories: [chcPill, chcPatch, chcRing, pop, otcNorgestrel]
+    notAffectedMethods: [lngIud, copperIud, dmpa, implant]
+    direction: medReducesMethodEfficacy
+    mechanism: cyp3a4Induction
+    severity: possibleInteraction
+    why: "{drug} may make your {method} less effective."
+    whatToDo: "Check with a pharmacist before relying on your {method} alone while taking {drug}."
+    durationNote: null
+    alternativesNote: "IUDs and the shot are not affected by this kind of medicine."
+    evidence:
+      - { type: guideline, source: FSRH_CEU_DI_2022, section: "Table 2" }

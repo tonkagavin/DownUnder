@@ -1,0 +1,20 @@
+version: "2026.11"
+effectiveDate: "2026-11-07"
+source: "FSRH CEU; FDA labels"
+reviewedBy: pending
+reviewDue: "2027-02-01"
+reverseEffects:
+  - id: reverse.lamotrigine.chc
+    rxcui: "28439"
+    name: lamotrigine
+    affectedMethodCategories: [chcPill, chcPatch, chcRing]
+    direction: methodAltersMedLevels
+    mechanism: ugtInduction
+    severity: knownInteraction
+    why: "Your {method} can lower {drug} levels, which may make {drug} less effective."
+    whatToDo: "Ask the clinician who prescribed {drug} or a pharmacist before relying on this combination. Do not change either medicine on your own."
+    durationNote: null
+    alternativesNote: "Progestin-only methods, IUDs, the shot, and the implant are not known to lower lamotrigine this way."
+    evidence:
+      - { type: guideline, source: FSRH_CEU_DI_2022, section: "Lamotrigine" }
+      - { type: label, source: FDA_lamotrigine, section: drugInteractions }

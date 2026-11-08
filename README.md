@@ -1,47 +1,38 @@
-# DownUnder MVP
+# DownUnder
 
-DownUnder is a full-stack MVP that helps women check whether a medication may interact with their selected birth control method or with other medications in their profile.
+Medication-safety check for birth control. A student records her method and other medications; DownUnder says whether anything in that combination matters, cites the source, and asks a pharmacist when it cannot tell. It never says “safe”. This is information from published labels and guidelines, not medical advice.
+
+The previous `frontend/` and `backend/` Express + sql.js MVP is retired. Use `apps/` and `packages/`.
 
 ## Stack
 
-- Frontend: Vite + React + TypeScript
-- Backend: Node + Express + TypeScript
-- Database: SQLite via `sql.js` persisted at `backend/db/downunder.sqlite`
-- External data sources: RxNav and openFDA drug label APIs
+- `apps/api` — Fastify, Drizzle, PGlite
+- `apps/mobile` — Expo Router (iOS, Android, web)
+- `apps/extract` — label sentence classifier (offline)
+- `packages/types`, `rules`, `rules-data`, `eval`, `ui`, `api-client`
 
-## Features
-
-- Create/update a local profile with physical metrics
-- Choose a birth control method from a seeded catalog
-- Add current medications to profile
-- Search medications via RxNav typeahead
-- Check interaction risk against birth control and profile meds
-- View plain-language guidance, risk level, source links, and disclaimers
-
-## Run locally
+## Run
 
 ```bash
 npm install
 npm run dev
 ```
 
-- Frontend: `http://localhost:5173`
-- Backend: `http://localhost:4000`
+- API: http://localhost:4000
+- Student product: http://localhost:8081
+- Campus demo (Maya, clinician, admin): http://localhost:8081/demo
 
-## Build and test
+The student product is a separate profile. It has no role switcher. The campus demo keeps Maya (combined pill, sertraline) plus Dr. Reyes’s worklist and the admin dashboard. Search **rifampin** (known interaction), **lamotrigine** (reverse effect), **amoxicillin** (pick the product), **mystery herb** (not enough information).
+
+## Test
 
 ```bash
-npm run build
-npm run test
+npm test
+npm run eval
 ```
 
-## Important disclaimer
+Gold set v0 must report **zero dangerous misses**.
 
-This MVP is educational and does **not** provide medical diagnosis or treatment advice.
-Always consult a licensed clinician or pharmacist before changing medications or contraception.
+## Important
 
-## Known limitations
-
-- Public APIs can rate-limit or return incomplete interaction data.
-- Interaction classification uses a rules-based normalization layer and is not clinically exhaustive.
-- The app currently supports a single local profile (no authentication).
+This tool does not diagnose, prescribe, or replace a pharmacist or clinician. Confirm with a licensed professional before changing medications or contraception.

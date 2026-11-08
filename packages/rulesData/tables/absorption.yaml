@@ -1,0 +1,45 @@
+version: "2026.11"
+effectiveDate: "2026-11-07"
+source: "FDA tirzepatide label; US SPR; orlistat labels"
+reviewedBy: pending
+reviewDue: "2027-02-01"
+absorption:
+  - id: absorption.tirzepatide.oral
+    rxcui: "2601723"
+    name: tirzepatide
+    objectMethodCategories: [chcPill, pop, otcNorgestrel]
+    direction: medImpairsMethodAbsorption
+    mechanism: giAbsorption
+    severity: knownInteraction
+    why: "{drug} can slow stomach emptying, which may make an oral {method} less reliable when you start it or raise the dose."
+    whatToDo: "The label advises switching to a non-oral method or adding a barrier method for 4 weeks after starting and after each dose increase. Ask a pharmacist or clinician which option fits you."
+    durationNote: "Four weeks after initiation and after each dose increase."
+    alternativesNote: "Patch, ring, IUD, implant, and the shot are not taken by mouth."
+    evidence:
+      - { type: label, source: FDA_tirzepatide, section: drugInteractions }
+  - id: absorption.semaglutide.oral
+    rxcui: "1991302"
+    name: semaglutide
+    objectMethodCategories: [chcPill, pop, otcNorgestrel]
+    direction: medImpairsMethodAbsorption
+    mechanism: giAbsorption
+    severity: possibleInteraction
+    why: "GLP-1 medicines like {drug} slow stomach emptying. The effect on oral contraception is less clearly labeled than for tirzepatide."
+    whatToDo: "Check with a pharmacist before relying on an oral {method} alone when starting or increasing {drug}."
+    durationNote: null
+    alternativesNote: "Non-oral methods are not absorbed through the stomach."
+    evidence:
+      - { type: label, source: FDA_semaglutide, section: warningsAndCautions }
+  - id: absorption.orlistat.oral
+    rxcui: "37925"
+    name: orlistat
+    objectMethodCategories: [chcPill, pop, otcNorgestrel]
+    direction: medImpairsMethodAbsorption
+    mechanism: giAbsorption
+    severity: possibleInteraction
+    why: "{drug} can reduce how much of an oral {method} the body absorbs, especially with diarrhea."
+    whatToDo: "Check with a pharmacist about backup contraception if you have loose stools while taking {drug}."
+    durationNote: null
+    alternativesNote: "Non-oral methods are not affected this way."
+    evidence:
+      - { type: label, source: FDA_orlistat, section: drugInteractions }
