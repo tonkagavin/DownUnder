@@ -39,7 +39,7 @@ Three layers on every finding: (1) outcome + plain sentence; (2) "Why and what t
 ### 1.5 Trust and credibility
 - Stanford web-credibility findings: show who is behind it (clinical advisor named with credentials, institution logo when deployed by a campus), show sources and dates, keep design professional and consistent, make it easy to contact a human.
 - Every result shows "Sources updated: <date>" and "Rules version <x>".
-- Honest scope statement on first run: "DownUnder checks birth control against other medications. It does not check every drug against every drug."
+- Honest scope statement on first run: "DownUnder checks whether a medicine and your birth control affect each other, and lists adverse effects the FDA label reports. It does not check every drug against every drug, and it does not predict which effects you will get."
 
 ### 1.6 Accessibility (WCAG 2.2 AA)
 - Color contrast ≥4.5:1 text, ≥3:1 UI components; outcomes carry icon + text label, never color alone (1.4.1, 1.4.3, 1.4.11).
@@ -87,7 +87,7 @@ Admin
 | P5 | Home | Hub | Method chip, medication list, big "Check a medication" button, recent checks with outcome chips, privacy center link. | Fitts, visibility |
 | P6 | Check: pick medication | Start a check | Search box; also "Check my whole list" against method. | Flexibility |
 | P7 | Check: progress | Status | Three-step progress text; cancel. | Visibility |
-| P8 | Result | The answer | Header: outcome label + icon. One sentence why (direction stated). One sentence do-now. Expanders: "Why and what to do", "Sources". Footer: "Checked against … / Not checked …", sources date, "Ask a pharmacist" button always present, "I'll do this: …" teach-back. | Progressive disclosure, risk comms |
+| P8 | Result | The answer | Header: outcome label + icon for the contraception question. One sentence why (direction stated). One sentence do-now. Then "Effects on your body": every adverse effect the label lists for the medicine and for the medicines already on her list, with the section name. An empty group says we could not read a list. Expanders: "Why and what to do", "Sources". Footer: "Checked against … / Not checked …", sources date, "Ask a pharmacist" button always present, "I'll do this: …" teach-back. | Progressive disclosure, risk comms |
 | P9 | Finding detail | Depth | Mechanism in plain terms, guideline action, alternatives that are not affected (e.g., IUD), how long the effect lasts (e.g., 28 days after stopping an inducer), label passage quoted with highlight. | Trust |
 | P10 | Not-enough-information | Honest abstention | Neutral treatment; why we couldn't tell (no product match / label unavailable / conflicting sources); pharmacist finder; "try again later" if upstream. | Error recovery |
 | P11 | Find help | Route to a human | Campus clinic hours and phone (tenant-configured), pharmacist locator, telehealth link if the tenant is a telehealth partner. | Consistent help |

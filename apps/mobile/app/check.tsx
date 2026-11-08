@@ -44,7 +44,9 @@ export default function Check() {
   return (
     <Screen tabs>
       <Title>Check a medication</Title>
-      <Body>We check it against your method, your other medications, and your health facts.</Body>
+      <Body>
+        We check it against your birth control. If the label describes an adverse effect because of that method, we show that sentence. The rest of the label stays on the medicine in your profile.
+      </Body>
       <Card>
         <View style={{ flexDirection: 'row', gap: 10, alignItems: 'center' }}>
           <MethodGlyph code={profile?.methodCode ?? 'notSure'} />

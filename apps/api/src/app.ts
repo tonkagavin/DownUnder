@@ -29,6 +29,7 @@ import { ensureProfileContext } from './lib/ensureProfile.js';
 import { id } from './lib/ids.js';
 import { answerQuestion } from './services/askService.js';
 import { runCheck } from './services/checkService.js';
+import { collectBodyEffects } from './services/bodyEffects.js';
 import { getLabelForIngredient } from './services/openFdaClient.js';
 import { resolveMedication, searchMedicationByName } from './services/rxnavClient.js';
 
@@ -158,6 +159,21 @@ export const buildApp = async () => {
     });
     await audit(userId, 'profile.medication.add', 'profileMedication', ctx.profile.id);
     return serializeProfile(userId);
+  });
+
+  app.get('/api/profile/medications/:id/effects', async (request, reply) => {
+    const { id: medId } = request.params as { id: string };
+    const userId = demoUser(request);
+    const ctx = await ensureProfileContext(userId);
+    const rows = await db.select().from(profileMedications).where(eq(profileMedications.id, medId)).limit(1);
+    const med = rows[0];
+    if (!med || med.profileId !== ctx.profile.id || !med.active) return reply.code(404).send({ error: 'Medication not found' });
+    const normalized = await resolveMedication({ displayName: med.displayName, rxcui: med.rxcuiInput ?? undefined });
+    const labels = new Map<string, Awaited<ReturnType<typeof getLabelForIngredient>>>();
+    for (const rxcui of normalized.ingredientRxcuis) {
+      labels.set(rxcui, await getLabelForIngredient(rxcui));
+    }
+    return { effects: collectBodyEffects([{ ...normalized, displayName: med.displayName }], labels, 'label') };
   });
 
   app.delete('/api/profile/medications/:id', async (request) => {

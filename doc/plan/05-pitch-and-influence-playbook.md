@@ -6,7 +6,7 @@ This is written to be used, not read once. Print §2, §6 and §8 before a meeti
 
 ## 1. The one-liner and the story arc
 
-One-liner: "DownUnder checks a woman's birth control against her other medications in both directions, shows its sources, and tells her and her clinician when to ask a pharmacist."
+One-liner: "DownUnder checks a woman's birth control against her other medications in both directions, lists adverse effects the label reports for her body, shows its sources, and tells her and her clinician when to ask a pharmacist."
 
 Shorter: "Medication safety for women on birth control, with the evidence shown."
 
@@ -28,7 +28,7 @@ Here's the problem. About two-thirds of women of reproductive age use contracept
 
 Generic drug checkers don't solve this. They don't know which method you're on, so they can't tell you that an IUD is unaffected while the pill isn't, and they bury the few interactions that matter under warnings that don't.
 
-DownUnder is a check that knows the method, checks both directions, cites the exact label or guideline passage, and says 'ask a pharmacist' when the data is thin. Students use it free. Campus health centers pay for the clinician view and analytics, then telehealth and pharmacies pay for the API. No ads, no data sales, ever — in this category trust is the product.
+DownUnder is a check that knows the method, checks both directions, lists the adverse effects on the FDA label whether or not birth control is affected, cites the exact label or guideline passage, and says 'ask a pharmacist' when the data is thin. Students use it free. Campus health centers pay for the clinician view and analytics, then telehealth and pharmacies pay for the API. No ads, no data sales, ever — in this category trust is the product.
 
 Where we are honestly: a hackathon MVP that proves the flow but whose engine I'm replacing. The real asset is the plan: a pharmacist-labeled validation set, a rules engine built on CDC and FSRH guidance, and a pilot at one campus in August.
 

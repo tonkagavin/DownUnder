@@ -60,7 +60,7 @@ Assumptions are explicit so Gavin can defend or change them.
 | Payers and employers (later) | Medical director; benefits lead | PMPM for women 15–49; member app access; de-identified outcome reporting | $0.05–0.15 PMPM | 9–18 months | Outcome evidence from campus and telehealth; actuarial case |
 | Consumers | n/a | Free forever; no-account mode | $0 | n/a | Trust |
 
-All prices are hypotheses to test in the first ten buyer conversations. Suggested test: present the campus tier sheet and ask "which tier would you be in and what would make this a no-brainer", then listen.
+All prices are hypotheses to test in the first ten buyer conversations. Suggested test: present the campus tier sheet and ask "which tier would you be in and what would make this a no-brainer", then listen. How the tiers, the blends, and the market totals were built, and which sources do and do not support them, is in [pricing-hypothesis.md](./pricing-hypothesis.md).
 
 ## 4. Go-to-market
 

@@ -192,7 +192,7 @@ export const evaluateCheck = (input: CheckInput): CheckResult => {
     checkedAgainst.push(med.displayName);
   }
 
-  notChecked.push('general drug-drug interactions outside contraception');
+  notChecked.push('a full check of every medicine against every other medicine');
 
   for (const med of focusMeds) {
     if (!med.resolved || med.ingredientRxcuis.length === 0) {
@@ -413,6 +413,7 @@ export const evaluateCheck = (input: CheckInput): CheckResult => {
     why: top?.why ?? 'We could not complete this check.',
     whatToDo: top?.whatToDo ?? 'Ask a pharmacist.',
     findings: unique,
+    bodyEffects: [],
     checkedAgainst: [...new Set(checkedAgainst)],
     notChecked: [...new Set(notChecked)],
     rulesVersion: RULES_DATA_VERSION,

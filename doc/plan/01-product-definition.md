@@ -6,19 +6,21 @@ Facts about the current app come from the repo survey in the roadmap extract (co
 
 ## 1. One paragraph
 
-DownUnder is a medication-safety check for women who use birth control. A user keeps one profile (contraceptive method, other medications, the few health facts that matter for eligibility) and asks "does this medication affect my birth control, and does my birth control affect it?" The answer is deterministic where published guidance exists (CDC US MEC, FSRH drug-interaction guidance, FDA labels), cites the exact source passage, says which drug affects which and how, and says "not enough information, ask a pharmacist" when the data is thin. It is sold to institutions that already answer this question badly or not at all (campus health centers first), with a free patient front door. It is not a diagnosis tool, does not replace a clinician, and never says "safe".
+DownUnder is a medication-safety check for women who use birth control. A user keeps one profile (contraceptive method, other medications, the few health facts that matter for eligibility) and asks two questions: "does this medication affect my birth control, and does my birth control affect it?" and "what adverse effects does the label report for this medicine on my body, whether or not birth control is involved?" The contraception answer is deterministic where published guidance exists (CDC US MEC, FSRH drug-interaction guidance, FDA labels), cites the exact source passage, says which drug affects which and how, and says "not enough information, ask a pharmacist" when the data is thin. The adverse-effect answer quotes the FDA label (boxed warning, adverse reactions, warnings, contraindications). It is a report of what the label lists, not a prediction of what will happen to her, and a missing list is never shown as "no adverse effects." It is sold to institutions that already answer this question badly or not at all (campus health centers first), with a free patient front door. It is not a diagnosis tool, does not replace a clinician, and never says "safe".
 
 ## 2. What the app does today (MVP shell, commit `74a7fce`)
 
 Honest status: a working profile/medication-list CRUD with a live RxNav typeahead and a non-functional interaction verdict.
 
 What works:
+
 - Single local profile: name, age (12–60), height, weight, smoker, free-text conditions; one birth-control method from a seeded catalog of 8 (combined pill, progestin-only pill, hormonal IUD, copper IUD, patch, ring, Depo-Provera, implant).
 - Add/remove medications via RxNav `/drugs.json` typeahead (live and working).
 - Checker page: pick a medication, press "Check Interaction", see a result card (risk level, one fixed sentence of guidance, "also checked against" list, two disclaimers, two homepage links as "sources").
 - Stack: Vite + React 19 + TypeScript frontend, Node + Express 5 + TypeScript backend, SQLite via sql.js (whole file rewritten on each save), no auth, open CORS, no deployment.
 
 What is broken or misleading:
+
 - The core check calls RxNav `/REST/interaction/list.json`, retired by NLM on 2024-01-02; it returns 404, the call is not caught, and the request fails with HTTP 500 whenever the user has a hormonal method with an RxCUI or any profile medication with an RxCUI. That is the primary use case.
 - openFDA lookup searches `openfda.generic_name` with RxNav display names like `rifampin 150 MG Oral Capsule [Rifadin]`, which returns nothing; label text is almost always empty in real use.
 - Risk scoring is keyword matching over label text: "pregnancy" or "contraindicated" anywhere forces High; non-empty text with no keyword yields "Low — no major interaction signals detected", which is the false-reassurance failure the roadmap warns about.
@@ -36,7 +38,6 @@ What is broken or misleading:
 - Does not cite evidence, version its rules, or record what source produced a verdict.
 - Does not abstain properly: "Unknown" only when every source is empty.
 - Does not handle supplements, OTC products, or emergency contraception interactions (e.g., ulipristal acetate followed by starting a hormonal method).
-- Does not work on mobile beyond a desktop browser layout; English only.
 
 ## 4. The user problem and the evidence
 
@@ -50,6 +51,7 @@ Core claim (from the roadmap, sourced): birth control and a woman's other medica
 | Women's medication safety is under-served | 2020 review: higher blood concentrations in women for 76 of 86 drugs; ADRs nearly twice as often (Zucker and Prendergast 2020). | General pharmacology, not contraception. |
 
 Newer signals that strengthen "why now" (public, not from the extract; verify wording before external use):
+
 - Opill (norgestrel) was approved for over-the-counter sale by FDA in July 2023 and reached shelves in 2024. OTC use removes the prescriber and pharmacist touchpoint where interaction questions used to get asked.
 - GLP-1/GIP agents: the tirzepatide label advises patients on oral contraceptives to switch to a non-oral method or add a barrier method for four weeks after initiation and after each dose escalation. These drugs are now prescribed at scale to women of reproductive age by prescribers who may not manage their contraception.
 - Pharmacist-prescribed contraception is authorized in roughly 30 US states (estimate; check the Birth Control Pharmacist tracker), so pharmacists increasingly own the contraception decision without the patient's full medication list.
@@ -61,6 +63,7 @@ Statistics in the roadmap are 2011–2020 vintage. Refresh (Guttmacher, NCHS) be
 ## 5. Personas
 
 ### 5.1 Maya, 20, student on the combined pill
+
 - Gets the pill from a telehealth service, antibiotics from urgent care, an SSRI from campus counseling, and buys St John's wort and ibuprofen herself.
 - Has heard "antibiotics cancel the pill" and does not know which ones actually matter.
 - Wants a fast, private answer on her phone; does not want an account that her university can see; will not read a label.
@@ -68,6 +71,7 @@ Statistics in the roadmap are 2011–2020 vintage. Refresh (Guttmacher, NCHS) be
 - Failure modes we must prevent: false reassurance; a wall of yellow warnings that she learns to ignore; a data trail she did not consent to.
 
 ### 5.2 Dr. Reyes, campus health nurse practitioner
+
 - Sees 20–30 students a day; contraception counseling is a routine visit; interaction questions are answered from memory, Lexicomp, or a call to the pharmacy.
 - Documents in a campus EHR (Medicat, PyraMED, Point and Click are the common ones; verify for the pilot campus).
 - Wants a view she can trust in front of a student: what flagged, why, from which source, what the guideline says, and a one-click way to record that she reviewed it.
@@ -75,6 +79,7 @@ Statistics in the roadmap are 2011–2020 vintage. Refresh (Guttmacher, NCHS) be
 - Success for her: fewer interruptions for lookup, a defensible source trail, a teaching aid for the student.
 
 ### 5.3 Priya, community or campus pharmacist
+
 - Runs prospective drug utilization review at dispensing; her system (FDB or Medi-Span) fires many low-value alerts, and contraception-specific context (which method, is it hormonal, is it oral) is usually missing because the method came from elsewhere or is OTC.
 - Increasingly prescribes contraception herself under state protocols.
 - Wants: a method-aware, direction-aware check she can run in 30 seconds, and a patient-facing explanation she can hand over.

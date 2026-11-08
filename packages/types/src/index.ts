@@ -118,12 +118,23 @@ export const findingSchema = z.object({
 });
 export type Finding = z.infer<typeof findingSchema>;
 
+export const bodyEffectSchema = z.object({
+  medicationName: z.string(),
+  section: z.string(),
+  effects: z.array(z.string()),
+  setId: z.string().nullable(),
+  source: z.string(),
+  note: z.string()
+});
+export type BodyEffect = z.infer<typeof bodyEffectSchema>;
+
 export const checkResultSchema = z.object({
   id: z.string(),
   overall: outcomeSchema,
   why: z.string(),
   whatToDo: z.string(),
   findings: z.array(findingSchema),
+  bodyEffects: z.array(bodyEffectSchema).default([]),
   checkedAgainst: z.array(z.string()),
   notChecked: z.array(z.string()),
   rulesVersion: z.string(),
@@ -289,6 +300,8 @@ export const labelSectionsSchema = z.object({
   drugInteractions: z.string().nullable(),
   contraindications: z.string().nullable(),
   warningsAndCautions: z.string().nullable(),
+  boxedWarning: z.string().nullable(),
+  adverseReactions: z.string().nullable(),
   useInSpecificPopulations: z.string().nullable()
 });
 export type LabelSections = z.infer<typeof labelSectionsSchema>;

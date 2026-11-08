@@ -17,7 +17,7 @@ export default function DemoHub() {
         at the top to move between roles.
       </Body>
       <Card>
-        <Body>Patient: Maya, 20, combined pill, sertraline.</Body>
+        <Body>Patient: Maya, 20, combined pill, sertraline. A check covers birth control and adverse effects from the label.</Body>
         <Body>Clinician: Dr. Reyes’s worklist of Maya’s checks. Students never see this.</Body>
         <Body>Admin: de-identified counts. What a campus would buy.</Body>
       </Card>

@@ -3,6 +3,7 @@ import type {
   AnalyticsMetric,
   AskRequest,
   AskResponse,
+  BodyEffect,
   CheckResult,
   ConsentState,
   CreateCheck,
@@ -65,6 +66,8 @@ export const createApiClient = (options: ClientOptions) => ({
     request<{ profile: Profile }>(options, '/api/profile/medications', { method: 'POST', body: JSON.stringify(body) }),
   removeMedication: (id: string) =>
     request<{ profile: Profile }>(options, `/api/profile/medications/${id}`, { method: 'DELETE' }),
+  medicationEffects: (id: string) =>
+    request<{ effects: BodyEffect[] }>(options, `/api/profile/medications/${id}/effects`),
   createCheck: (body: CreateCheck) =>
     request<{ check: CheckResult }>(options, '/api/checks', { method: 'POST', body: JSON.stringify(body) }),
   listChecks: () => request<{ checks: CheckResult[] }>(options, '/api/checks'),

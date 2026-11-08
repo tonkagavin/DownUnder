@@ -4,7 +4,7 @@ import { useLocalSearchParams } from 'expo-router';
 import { useEffect, useState } from 'react';
 import { Text, TextInput, View } from 'react-native';
 import { useSession } from '../../src/session';
-import { Body, Disclaimer, Muted, OutcomeChip, PrimaryButton, Screen, SecondaryButton, Title } from '../../src/ui';
+import { Body, BodyEffects, Disclaimer, Muted, OutcomeChip, PrimaryButton, Screen, SecondaryButton, Title } from '../../src/ui';
 
 export default function ClinicCheck() {
   const { checkId } = useLocalSearchParams<{ checkId: string }>();
@@ -38,6 +38,7 @@ export default function ClinicCheck() {
       <Title>Independent review</Title>
       <Body>{check.why}</Body>
       <Body>{check.whatToDo}</Body>
+      <BodyEffects effects={check.bodyEffects} />
       {check.findings.map((finding) => (
         <View key={finding.id} style={{ backgroundColor: tokens.color.surface, padding: 12, borderRadius: 12, gap: 6 }}>
           <Text style={{ fontWeight: '700' }}>

@@ -51,7 +51,8 @@ export const outcomeCopy: Record<Outcome, { label: string; next: string }> = {
 
 export const disclaimers = {
   notMedicalAdvice: NOT_MEDICAL_ADVICE,
-  scope: 'DownUnder checks birth control against other medications. It does not check every drug against every drug.',
+  scope:
+    'DownUnder checks whether a medicine and your birth control affect each other, and lists adverse effects the FDA label reports for that medicine. It does not check every drug against every drug, and it does not predict which effects you will get.',
   neverSafe: 'A result of “no known interaction in our sources” is not the same as “safe”.'
 };
 

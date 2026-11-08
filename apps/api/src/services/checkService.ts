@@ -6,6 +6,7 @@ import { db } from '../db/client.js';
 import { checks, extractions as extractionsTable, profiles, profileMedications, profileMethods } from '../db/schema.js';
 import { ageBandFromYears } from '../lib/ageBand.js';
 import { id } from '../lib/ids.js';
+import { collectBodyEffects } from './bodyEffects.js';
 import { getLabelForIngredient } from './openFdaClient.js';
 import { resolveMedication } from './rxnavClient.js';
 
@@ -50,12 +51,14 @@ export const runCheck = async (input: {
 
   const toResolve = searched ? [searched, ...profileMeds] : profileMeds;
   const labelStatusByIngredient: Record<string, LabelStatus> = {};
+  const labelsByIngredient = new Map<string, { status: LabelStatus; label: Awaited<ReturnType<typeof getLabelForIngredient>>['label'] }>();
   const extractionStatements = [];
 
   for (const med of toResolve) {
     for (const rxcui of med.ingredientRxcuis) {
       const { status, label } = await getLabelForIngredient(rxcui);
       labelStatusByIngredient[rxcui] = status;
+      labelsByIngredient.set(rxcui, { status, label });
       if (label) {
         const texts = [label.drugInteractions, label.warningsAndCautions, label.useInSpecificPopulations].filter(
           Boolean
@@ -97,6 +100,7 @@ export const runCheck = async (input: {
     checkId,
     sourcesUpdated: new Date().toISOString().slice(0, 10)
   });
+  result.bodyEffects = collectBodyEffects(toResolve, labelsByIngredient, 'method');
 
   for (const statement of allowed) {
     await db.insert(extractionsTable).values({

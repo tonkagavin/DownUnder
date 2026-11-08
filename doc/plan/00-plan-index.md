@@ -1,6 +1,6 @@
 # DownUnder plan · Index
 
-Investor-ready product and business plan for DownUnder, a women's medication-safety app that checks birth control against other medications in both directions. Pitched as a Sandai-backed venture; B2B buyers first with a free consumer front door; privacy-first, no ads, no data sales. The source of facts about the current app and the original roadmap is the extract at `../../internal/downunder-roadmap-extract.md` (Project store, internal). This plan builds on it and does not contradict it.
+Investor-ready product and business plan for DownUnder, a women's medication-safety app that checks birth control against other medications in both directions and lists adverse effects the FDA label reports for her body. Pitched as a Sandai-backed venture; B2B buyers first with a free consumer front door; privacy-first, no ads, no data sales. The source of facts about the current app and the original roadmap is the extract at `../../internal/downunder-roadmap-extract.md` (Project store, internal). This plan builds on it and does not contradict it.
 
 Founder: Gavin McKay (Sandai). First audience: Sandai's CEO. Second: clinical advisor and pilot campus. Third: investors after Gate 3.
 

@@ -8,8 +8,8 @@ import { Body, Card, Disclaimer, Muted, PrimaryButton, Screen, Title } from '../
 
 const prompts = [
   'Does rifampin affect the pill?',
-  'Do most antibiotics cancel the pill?',
-  'Does the copper IUD interact with medicines?'
+  'What adverse effects can this medicine cause?',
+  'Do most antibiotics cancel the pill?'
 ];
 
 export default function Ask() {
@@ -35,7 +35,10 @@ export default function Ask() {
   return (
     <Screen tabs>
       <Title>Ask DownUnder</Title>
-      <Body>Answers come from our reviewed tables and labels, with citations. Your profile is not sent to a third-party model. This is not a doctor.</Body>
+      <Body>
+        Answers come from our reviewed tables and from the adverse effects on a check you already ran, with citations. Your
+        profile is not sent to a third-party model. This is not a doctor.
+      </Body>
       <TextInput
         value={question}
         onChangeText={setQuestion}

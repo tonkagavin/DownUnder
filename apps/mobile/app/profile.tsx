@@ -5,7 +5,8 @@ import { Pressable, Switch, Text, TextInput, View } from 'react-native';
 import { MedicationSearch, type PickedMedication } from '../src/medicationSearch';
 import { MethodPicker } from '../src/methodPicker';
 import { useSession } from '../src/session';
-import { Body, Card, Disclaimer, MoreLinks, Muted, PrimaryButton, Screen, SectionLabel, Title } from '../src/ui';
+import type { BodyEffect } from '@downunder/types';
+import { Body, BodyEffects, Card, Disclaimer, MoreLinks, Muted, PrimaryButton, Screen, SectionLabel, Title } from '../src/ui';
 
 const CONDITIONS: { id: ConditionFlag; label: string }[] = [
   { id: 'migraineWithAura', label: 'Migraine with aura' },
@@ -22,6 +23,8 @@ export default function Profile() {
   const [picked, setPicked] = useState<PickedMedication | null>(null);
   const [saved, setSaved] = useState<string | null>(null);
   const [changeMethod, setChangeMethod] = useState(false);
+  const [openMedId, setOpenMedId] = useState<string | null>(null);
+  const [medEffects, setMedEffects] = useState<BodyEffect[]>([]);
 
   useEffect(() => {
     refreshProfile().catch(() => undefined);
@@ -80,15 +83,33 @@ export default function Profile() {
 
       <Card>
         <SectionLabel>Other medications</SectionLabel>
-        <Muted>Not including your birth control.</Muted>
+        <Muted>Not including your birth control. Tap a medicine to read every adverse effect on its label.</Muted>
         <MedicationSearch label="Search medications to add" picked={picked} onPick={setPicked} />
         <PrimaryButton label={picked ? `Add ${picked.displayName}` : 'Pick a medicine to add'} onPress={add} disabled={!picked} />
         {(profile?.medications ?? []).map((med) => (
-          <View key={med.id} style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', minHeight: 44 }}>
-            <View style={{ flex: 1 }}>
+          <View key={med.id} style={{ gap: 8 }}>
+            <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', minHeight: 44 }}>
+            <Pressable
+              style={{ flex: 1 }}
+              accessibilityRole="button"
+              accessibilityLabel={`Adverse effects for ${med.displayName}`}
+              onPress={async () => {
+                if (openMedId === med.id) {
+                  setOpenMedId(null);
+                  setMedEffects([]);
+                  return;
+                }
+                setOpenMedId(med.id);
+                const data = await api.medicationEffects(med.id);
+                setMedEffects(data.effects);
+              }}
+            >
               <Text style={{ color: tokens.color.ink, fontWeight: '600' }}>{med.displayName}</Text>
+              <Text style={{ color: tokens.color.accent, fontWeight: '700', marginTop: 2 }}>
+                {openMedId === med.id ? 'Hide label effects' : 'Label effects'}
+              </Text>
               {med.resolved ? null : <Muted>Needs a product match</Muted>}
-            </View>
+            </Pressable>
             <Pressable
               onPress={async () => {
                 await api.removeMedication(med.id);
@@ -99,6 +120,8 @@ export default function Profile() {
             >
               <Text style={{ color: tokens.color.accent, fontWeight: '700' }}>Remove</Text>
             </Pressable>
+            </View>
+            {openMedId === med.id ? <BodyEffects effects={medEffects} variant="profile" /> : null}
           </View>
         ))}
       </Card>

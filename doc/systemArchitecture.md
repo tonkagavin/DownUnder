@@ -14,4 +14,4 @@ flowchart LR
 - `ExpressAPI` centralizes profile/catalog CRUD and interaction-check orchestration.
 - `SQLiteEngine_sqljs` stores local profile data, seeded birth control methods, meds catalog, and check history.
 - `RxNavAPI` provides medication lookup and interaction graph data.
-- `openFDAAPI` provides label-derived interaction text to improve risk classification.
+- `openFDAAPI` provides label text for contraception interactions and for adverse effects on the body (boxed warning, adverse reactions, warnings, contraindications). The current app reads those sections in `apps/api`; the diagram above describes the retired Express shell.

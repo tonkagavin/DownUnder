@@ -44,7 +44,9 @@ export const getLabelForIngredient = async (rxcui: string): Promise<{ status: La
       effectiveTime: first(row.effective_time),
       drugInteractions: first(row.drug_interactions),
       contraindications: first(row.contraindications),
-      warningsAndCautions: first(row.warnings_and_cautions),
+      warningsAndCautions: first(row.warnings_and_cautions) ?? first(row.warnings),
+      boxedWarning: first(row.boxed_warning),
+      adverseReactions: first(row.adverse_reactions),
       useInSpecificPopulations: first(row.use_in_specific_populations)
     };
     await db
@@ -72,8 +74,11 @@ export const seedDemoLabels = async (): Promise<void> => {
       ingredientRxcuis: ['723'],
       effectiveTime: '20240101',
       drugInteractions: 'No contraceptive interaction is described for amoxicillin in this demo label excerpt.',
-      contraindications: null,
-      warningsAndCautions: null,
+      contraindications: 'Do not use if you have had a serious allergic reaction to amoxicillin or another penicillin.',
+      warningsAndCautions:
+        'Serious and occasionally fatal hypersensitivity reactions, including anaphylaxis, have been reported. Clostridioides difficile-associated diarrhea has been reported with nearly all antibacterial agents.',
+      boxedWarning: null,
+      adverseReactions: 'Rash, hives, nausea, vomiting, and diarrhea have been reported. Allergic reactions can include swelling and trouble breathing.',
       useInSpecificPopulations: null
     },
     {
@@ -82,8 +87,12 @@ export const seedDemoLabels = async (): Promise<void> => {
       ingredientRxcuis: ['9384'],
       effectiveTime: '20240101',
       drugInteractions: 'Rifampin may reduce the effectiveness of hormonal contraceptives. A backup method is recommended.',
-      contraindications: null,
-      warningsAndCautions: null,
+      contraindications: 'Do not use if you have had a severe reaction to a rifamycin, or if you have active liver disease when a safer alternative exists.',
+      warningsAndCautions:
+        'Rifampin has been associated with liver injury. It may discolor urine, sweat, sputum, tears, and teeth yellow, orange, red, or brown. Menstrual disturbances have been reported.',
+      boxedWarning: null,
+      adverseReactions:
+        'Heartburn, stomach pain, loss of appetite, nausea, vomiting, jaundice, gas, cramps, and diarrhea have been reported. Headache, drowsiness, fatigue, and dizziness have been reported. Blood disorders, including a low platelet count, have been reported.',
       useInSpecificPopulations: null
     },
     {
@@ -93,7 +102,11 @@ export const seedDemoLabels = async (): Promise<void> => {
       effectiveTime: '20240101',
       drugInteractions: 'Estrogen-containing oral contraceptives can decrease lamotrigine concentrations.',
       contraindications: null,
-      warningsAndCautions: null,
+      warningsAndCautions:
+        'Serious skin rashes, including Stevens-Johnson syndrome, are more likely in the first weeks of treatment and when the dose is raised quickly. Stop and get medical help for a rash with blistering, peeling, or sores in the mouth or around the eyes.',
+      boxedWarning:
+        'Serious rashes requiring hospitalization, including Stevens-Johnson syndrome, have been reported. The risk is higher in children and when lamotrigine is started or increased too quickly.',
+      adverseReactions: 'Dizziness, headache, double vision, blurred vision, lack of coordination, nausea, vomiting, and insomnia are commonly reported.',
       useInSpecificPopulations: null
     },
     {
@@ -102,8 +115,13 @@ export const seedDemoLabels = async (): Promise<void> => {
       ingredientRxcuis: ['36437'],
       effectiveTime: '20240101',
       drugInteractions: 'No hormonal contraceptive interaction is described in this demo excerpt.',
-      contraindications: null,
-      warningsAndCautions: null,
+      contraindications: 'Do not use with pimozide, or with a monoamine oxidase inhibitor, or within 14 days of stopping one.',
+      warningsAndCautions:
+        'Sertraline can increase the risk of bleeding, especially with aspirin, NSAIDs, or warfarin. Serotonin syndrome can occur when it is combined with other serotonergic drugs.',
+      boxedWarning:
+        'Antidepressants increased the risk of suicidal thoughts and behavior in children, adolescents, and young adults in short-term studies. Sertraline is not approved for children with major depressive disorder.',
+      adverseReactions:
+        'Nausea, diarrhea, indigestion, tremor, decreased appetite, sweating, dry mouth, insomnia, and sexual problems including decreased libido are commonly reported.',
       useInSpecificPopulations: null
     }
   ];
@@ -118,6 +136,13 @@ export const seedDemoLabels = async (): Promise<void> => {
         sections: label,
         fetchedAt: new Date()
       })
-      .onConflictDoNothing();
+      .onConflictDoUpdate({
+        target: labelCache.setId,
+        set: {
+          sections: label,
+          effectiveTime: label.effectiveTime,
+          fetchedAt: new Date()
+        }
+      });
   }
 };

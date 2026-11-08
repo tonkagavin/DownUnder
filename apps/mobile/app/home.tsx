@@ -37,7 +37,10 @@ export default function Home() {
     <Screen tabs>
       <BrandMark compact />
       <Title>{profile?.displayName ? `Hi, ${profile.displayName}.` : 'Your checks'}</Title>
-      <Body>Your method and list stay here. Check a new medicine against both in under a minute.</Body>
+      <Body>
+        Your method and list stay here. A check tells you whether a medicine and your birth control affect each other, and
+        what the label says that medicine can do to your body.
+      </Body>
 
       <Pressable onPress={() => router.push('/profile')} accessibilityRole="button" accessibilityLabel="Open profile">
         <Card>

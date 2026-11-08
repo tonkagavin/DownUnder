@@ -25,9 +25,25 @@ describe('api', () => {
       payload: { searchedMedication: { displayName: 'rifampin', rxcui: '9384' } }
     });
     expect(response.statusCode).toBe(200);
-    const body = response.json() as { check: { overall: string; why: string; findings: unknown[] } };
+    const body = response.json() as {
+      check: { overall: string; why: string; findings: unknown[]; bodyEffects: { effects: string[]; medicationName: string }[] };
+    };
     expect(body.check.overall).toBe('knownInteraction');
     expect(body.check.why.toLowerCase()).not.toContain('safe');
+    const rifampinEffects = body.check.bodyEffects
+      .filter((item) => item.medicationName.toLowerCase().includes('rifampin'))
+      .flatMap((item) => item.effects)
+      .join(' ')
+      .toLowerCase();
+    expect(rifampinEffects).toContain('contracept');
+    expect(rifampinEffects).not.toContain('heartburn');
+    expect(
+      body.check.bodyEffects
+        .filter((item) => item.medicationName.toLowerCase().includes('sertraline'))
+        .flatMap((item) => item.effects)
+        .join(' ')
+        .toLowerCase()
+    ).not.toContain('suicidal');
   });
 
   it('abstains on unresolved supplements', async () => {

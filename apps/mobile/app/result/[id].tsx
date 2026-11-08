@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { Pressable, Text, View } from 'react-native';
 import type { CheckResult } from '@downunder/types';
 import { useSession } from '../../src/session';
-import { Body, Card, Disclaimer, Muted, OutcomeChip, PrimaryButton, Screen, SecondaryButton, SectionLabel, Title } from '../../src/ui';
+import { Body, BodyEffects, Card, Disclaimer, Muted, OutcomeChip, PrimaryButton, Screen, SecondaryButton, SectionLabel, Title } from '../../src/ui';
 
 export default function Result() {
   const { id } = useLocalSearchParams<{ id: string }>();
@@ -42,6 +42,7 @@ export default function Result() {
       <OutcomeChip outcome={check.overall} />
       <Title>{check.why}</Title>
       <Body>{check.whatToDo}</Body>
+      <BodyEffects effects={check.bodyEffects} />
 
       <Pressable onPress={() => setOpenWhy(!openWhy)} accessibilityRole="button" accessibilityLabel="Why and what to do">
         <Text style={styles.link}>{openWhy ? 'Hide why and what to do' : 'Why and what to do'}</Text>

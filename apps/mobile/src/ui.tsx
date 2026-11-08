@@ -1,7 +1,7 @@
-import type { Outcome } from '@downunder/types';
+import type { BodyEffect, Outcome } from '@downunder/types';
 import { disclaimers, methodVisual, tokens } from '@downunder/ui';
 import { usePathname, useRouter } from 'expo-router';
-import React, { type ReactNode } from 'react';
+import React, { useState, type ReactNode } from 'react';
 import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { useSession } from './session';
 
@@ -101,7 +101,7 @@ export const OutcomeChip = ({ outcome }: { outcome: Outcome }) => {
 };
 
 export const ProgressTrack = ({ step }: { step: 1 | 2 | 3 }) => {
-  const labels = ['Identifying medication', 'Reading sources', 'Applying guidelines'];
+  const labels = ['Identifying medication', 'Reading the label and adverse effects', 'Applying guidelines'];
   return (
     <View accessibilityLiveRegion="polite" style={styles.progress}>
       <View style={styles.progressRow}>
@@ -240,6 +240,53 @@ export const TabBar = () => {
             <TabGlyph name={tab.icon} color={color} />
             {active ? <View style={styles.tabDot} /> : <View style={styles.tabDotOff} />}
           </Pressable>
+        );
+      })}
+    </View>
+  );
+};
+
+export const BodyEffects = ({
+  effects,
+  variant = 'check'
+}: {
+  effects: BodyEffect[] | undefined;
+  variant?: 'check' | 'profile';
+}) => {
+  const groups = (effects ?? []).filter((group) => group.effects.length > 0);
+  const [open, setOpen] = useState<Record<string, boolean>>({});
+  return (
+    <View style={{ gap: 12 }}>
+      <SectionLabel>{variant === 'check' ? 'Because of your birth control' : 'Adverse effects on the label'}</SectionLabel>
+      <Muted>
+        {variant === 'check'
+          ? 'Only effects the label ties to your method. The rest of the label is not shown here. Open the medicine on your profile to read it. Nothing listed is not the same as safe.'
+          : 'Everything the label lists for this medicine, including effects that have nothing to do with birth control. This is not a prediction of what will happen to you.'}
+      </Muted>
+      {groups.length === 0 && variant === 'check' ? (
+        <Muted>No adverse effect tied to your method showed up for this check.</Muted>
+      ) : null}
+      {groups.map((group) => {
+        const key = `${group.medicationName}-${group.section}`;
+        const showAll = open[key] ?? false;
+        const visible = showAll ? group.effects : group.effects.slice(0, 5);
+        return (
+          <Card key={key}>
+            <Text style={{ fontWeight: '700', color: tokens.color.ink, fontSize: 16 }}>
+              {group.medicationName} · {group.section}
+            </Text>
+            <Muted>{group.source}</Muted>
+            {visible.map((effect, index) => (
+              <Body key={`${key}-${index}`}>{effect}</Body>
+            ))}
+            {group.effects.length > 5 ? (
+              <TextButton
+                label={showAll ? 'Show fewer' : `Show all ${group.effects.length} from this section`}
+                onPress={() => setOpen((current) => ({ ...current, [key]: !showAll }))}
+              />
+            ) : null}
+            <Muted>{group.note}</Muted>
+          </Card>
         );
       })}
     </View>
